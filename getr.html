@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ship to the moon</title>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body>
+     <!-- <pre id="readout">Waiting for data...</pre> -->
+  
+    
+    
+    
+    
+   
+    
+    
+
+
+
+<style>
+td {
+    height: 131px;
+}
+
+
+
+
+.title { font-size: 30px;
+    font-weight: bold;
+    color: black; }	
+	
+
+	
+	.footer_row {  }
+	
+	
+	.title_row td { padding: 5px 4px;
+    height: auto; }
+	
+	.second_row { font-weight: bold; }
+	
+	#name { font-weight: normal; }
+	#orders { font-weight: normal; }
+	#shipping { font-weight: normal; }
+	
+	.logo {     float: right; }
+	
+	.no-print { 
+    border: none;
+    background: #0e0ebc;
+    color: white;
+    padding: 10px 17px;
+    font-weight: bold;
+    margin: 0 auto;
+    display: block;
+    font-size: 27px;
+    box-shadow: 0px 14px 13px 1px black;
+ }
+ 
+ 	.product_image  { width: 100px; }
+
+
+
+
+
+
+	
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+	
+	
+	@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+
+.second_table td {     border-top: none !important;
+ }
+ 
+ .note { width: 400px; }
+	
+
+
+tr.second_row {
+    background: #e3e0fe;
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+  
+}
+
+
+@media print {
+    
+    table { table-layout: fixed;
+    width: max-content !important; }
+  body {
+      -webkit-print-color-adjust: exact;
+   }
+
+tr.second_row {
+    background-color: #e3e0fe !important;
+	-webkit-print-color-adjust: exact !important; 
+}
+
+
+}
+
+
+
+
+.plink { word-wrap: break-word; width: 300px; display: block; }
+
+
+</style>
+
+ 
+  
+ <table class="table">
+ <tbody>
+  <tr class="title_row">
+   <td scope="col" colspan="7" class="title">Quotation</td>
+   </tr>
+   
+   <tr class="second_row">
+   <td scope="col" class="">Name <br /> <span id="uname"></span></td>
+   <td scope="col" class="" colspan="1">Targeted Countries & Shipping time <br /> <span id="shipping"></span></td>
+   <td scope="col" class="">Monthly Orders <br /> <span id="orders"></span></td>
+   <td scope="col" class="">Quoting Person <br /> <span id="Quoting_Person"></span></td>
+   <td scope="col" class="">SDR <br /> <span id="sdr"></span></td>
+   <td scope="col" class="">Date <br /> <span id="date"></span></td>
+   
+   </tr>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    <tr class="r1" id="first-prod">
+   <td scope="col"> <img class="product_image" src="" id="product_image1" /></td>
+      <td scope="col" colspan="2"> 
+
+
+<div class="row">
+  <div class="column"> <b>Variant 1</b>  <br /> <span id="var_1"></span>  </div>
+ <div class="column"> <b>Current Price 1</b> <br /> $<span id="curr_prc_1"></span>  </div>
+ <div class="column"> <b>Our Price</b> <br />$<span id="our_price_1"></span>  <br /> <br /> <b>VAT</b> <br /> $<span id="vat_1"></span>  </div>
+</div>
+
+<b> Note </b> <br />
+<div class="note"> <span id="note_1"></span>
+
+<br /><br />
+<b> Product Link  </b> <br />
+<div class="note"> <span id="pl1" class="plink"></span>
+</div>
+
+	   </td>
+	  
+	  
+      <td scope="col" colspan="5"> 
+	  
+	  
+	  
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="country_1"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="s1_1"></span> <br /> <span id="s1_2"></span> <br /> <span id="s1_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="st1_1"></span>  <br /> <span id="st1_2"></span>  <br /> <span id="st1_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="sf1_1"></span>  <br /> $<span id="sf1_2"></span> <br /> $<span id="sf1_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="country_2"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="s2_1"></span> <br /> <span id="s2_2"></span> <br /> <span id="s2_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="st2_1"></span>  <br /> <span id="st2_2"></span>  <br /> <span id="st2_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="sf2_1"></span>  <br /> $<span id="sf2_2"></span> <br /> $<span id="sf2_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="country_3"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="s3_1"></span> <br /> <span id="s3_2"></span> <br /> <span id="s3_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="st3_1"></span>  <br /> <span id="st3_2"></span>  <br /> <span id="st3_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="sf3_1"></span>  <br /> $<span id="sf3_2"></span> <br /> $<span id="sf3_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	 </td>
+      
+   </tr>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <!--  Second Product row  -->
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+      <tr class="r1" id="second-prod">
+   <td scope="col"> <img class="product_image" src="" id="second_product_image1" /></td>
+      <td scope="col" colspan="2"> 
+
+
+<div class="row">
+  <div class="column"> <b>Variant 2</b>  <br /> <span id="second_var_1"></span>  </div>
+ <div class="column"> <b>Current Price 2</b> <br /> $<span id="second_curr_prc_1"></span>  </div>
+ <div class="column"> <b>Our Price</b> <br />$<span id="second_our_price_1"></span>  <br /> <br /> <b>VAT</b> <br /> $<span id="second_vat_1"></span>  </div>
+</div>
+
+<b> Note </b> <br />
+<div class="note"> <span id="second_note_1"></span>
+
+<br /><br />
+<b> Product Link  </b> <br />
+<div class="note"> <span id="pl2" class="plink"></span>
+</div>
+
+	   </td>
+	  
+	  
+      <td scope="col" colspan="5"> 
+	  
+	  
+	  
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="second_country_1"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="second_s1_1"></span> <br /> <span id="second_s1_2"></span> <br /> <span id="second_s1_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="second_st1_1"></span>  <br /> <span id="second_st1_2"></span>  <br /> <span id="second_st1_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="second_sf1_1"></span>  <br /> $<span id="second_sf1_2"></span> <br /> $<span id="second_sf1_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="second_country_2"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="second_s2_1"></span> <br /> <span id="second_s2_2"></span> <br /> <span id="second_s2_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="second_st2_1"></span>  <br /> <span id="second_st2_2"></span>  <br /> <span id="second_st2_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="second_sf2_1"></span>  <br /> $<span id="second_sf2_2"></span> <br /> $<span id="second_sf2_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="second_country_3"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="second_s3_1"></span> <br /> <span id="second_s3_2"></span> <br /> <span id="second_s3_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="second_st3_1"></span>  <br /> <span id="second_st3_2"></span>  <br /> <span id="second_st3_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="second_sf3_1"></span>  <br /> $<span id="second_sf3_2"></span> <br /> $<span id="second_sf3_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	 </td>
+      
+   </tr>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    <!--  Third Product row  -->
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+      <tr class="r1" id="third-prod">
+   <td scope="col"> <img class="product_image" src="" id="third_product_image1" /></td>
+      <td scope="col" colspan="2"> 
+
+
+<div class="row">
+  <div class="column"> <b>Variant 3</b>  <br /> <span id="third_var_1"></span>  </div>
+ <div class="column"> <b>Current Price 3</b> <br /> $<span id="third_curr_prc_1"></span>  </div>
+ <div class="column"> <b>Our Price</b> <br />$<span id="third_our_price_1"></span>  <br /> <br /> <b>VAT</b> <br /> $<span id="third_vat_1"></span>  </div>
+</div>
+
+<b> Note </b> <br />
+<div class="note"> <span id="third_note_1"></span>
+
+<br /><br />
+<b> Product Link  </b> <br />
+<div class="note"> <span id="pl3" class="plink"></span>
+
+</div>
+
+	   </td>
+	  
+	  
+      <td scope="col" colspan="5"> 
+	  
+	  
+	  
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="third_country_1"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="third_s1_1"></span> <br /> <span id="third_s1_2"></span> <br /> <span id="third_s1_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="third_st1_1"></span>  <br /> <span id="third_st1_2"></span>  <br /> <span id="third_st1_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="third_sf1_1"></span>  <br /> $<span id="third_sf1_2"></span> <br /> $<span id="third_sf1_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="third_country_2"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="third_s2_1"></span> <br /> <span id="third_s2_2"></span> <br /> <span id="third_s2_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="third_st2_1"></span>  <br /> <span id="third_st2_2"></span>  <br /> <span id="third_st2_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="third_sf2_1"></span>  <br /> $<span id="third_sf2_2"></span> <br /> $<span id="third_sf2_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="third_country_3"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="third_s3_1"></span> <br /> <span id="third_s3_2"></span> <br /> <span id="third_s3_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="third_st3_1"></span>  <br /> <span id="third_st3_2"></span>  <br /> <span id="third_st3_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="third_sf3_1"></span>  <br /> $<span id="third_sf3_2"></span> <br /> $<span id="third_sf3_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	 </td>
+      
+   </tr>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    <!--  Fourth Product row  -->
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+      <tr class="r1" id="fourth-prod">
+   <td scope="col"> <img class="product_image" src="" id="fourth_product_image1" /></td>
+      <td scope="col" colspan="2"> 
+
+
+<div class="row">
+  <div class="column"> <b>Variant 4</b>  <br /> <span id="fourth_var_1"></span>  </div>
+ <div class="column"> <b>Current Price 4</b> <br /> $<span id="fourth_curr_prc_1"></span>  </div>
+ <div class="column"> <b>Our Price</b> <br />$<span id="fourth_our_price_1"></span>  <br /> <br /> <b>VAT</b> <br /> $<span id="fourth_vat_1"></span>  </div>
+</div>
+
+<b> Note </b> <br />
+<div class="note"> <span id="fourth_note_1"></span>
+
+<br /><br />
+<b> Product Link  </b> <br />
+<div class="note"> <span id="pl4" class="plink"></span>
+</div>
+
+	   </td>
+	  
+	  
+      <td scope="col" colspan="5"> 
+	  
+	  
+	  
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="fourth_country_1"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="fourth_s1_1"></span> <br /> <span id="fourth_s1_2"></span> <br /> <span id="fourth_s1_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="fourth_st1_1"></span>  <br /> <span id="fourth_st1_2"></span>  <br /> <span id="fourth_st1_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="fourth_sf1_1"></span>  <br /> $<span id="fourth_sf1_2"></span> <br /> $<span id="fourth_sf1_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="fourth_country_2"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="fourth_s2_1"></span> <br /> <span id="fourth_s2_2"></span> <br /> <span id="fourth_s2_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="fourth_st2_1"></span>  <br /> <span id="fourth_st2_2"></span>  <br /> <span id="fourth_st2_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="fourth_sf2_1"></span>  <br /> $<span id="fourth_sf2_2"></span> <br /> $<span id="fourth_sf2_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="fourth_country_3"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="fourth_s3_1"></span> <br /> <span id="fourth_s3_2"></span> <br /> <span id="fourth_s3_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="fourth_st3_1"></span>  <br /> <span id="fourth_st3_2"></span>  <br /> <span id="fourth_st3_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="fourth_sf3_1"></span>  <br /> $<span id="fourth_sf3_2"></span> <br /> $<span id="fourth_sf3_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	 </td>
+      
+   </tr>
+   
+   
+   
+   
+     
+   
+   
+   
+   
+   
+   
+   
+   
+    <!--  Fifth Product row  -->
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+      <tr class="r1" id="fifth-prod">
+   <td scope="col"> <img class="product_image" src="" id="fifth_product_image1" /></td>
+      <td scope="col" colspan="2"> 
+
+
+<div class="row">
+  <div class="column"> <b>Variant 5</b>  <br /> <span id="fifth_var_1"></span>  </div>
+ <div class="column"> <b>Current Price 5</b> <br /> $<span id="fifth_curr_prc_1"></span>  </div>
+ <div class="column"> <b>Our Price</b> <br />$<span id="fifth_our_price_1"></span>  <br /> <br /> <b>VAT</b> <br /> $<span id="fifth_vat_1"></span>  </div>
+</div>
+
+<b> Note </b> <br />
+<div class="note"> <span id="fifth_note_1"></span>
+
+<br /><br />
+<b> Product Link  </b> <br />
+<div class="note"> <span id="pl5" class="plink"></span>
+</div>
+
+	   </td>
+	  
+	  
+      <td scope="col" colspan="5"> 
+	  
+	  
+	  
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="fifth_country_1"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="fifth_s1_1"></span> <br /> <span id="fifth_s1_2"></span> <br /> <span id="fifth_s1_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="fifth_st1_1"></span>  <br /> <span id="fifth_st1_2"></span>  <br /> <span id="fifth_st1_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="fifth_sf1_1"></span>  <br /> $<span id="fifth_sf1_2"></span> <br /> $<span id="fifth_sf1_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="fifth_country_2"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="fifth_s2_1"></span> <br /> <span id="fifth_s2_2"></span> <br /> <span id="fifth_s2_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="fifth_st2_1"></span>  <br /> <span id="fifth_st2_2"></span>  <br /> <span id="fifth_st2_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="fifth_sf2_1"></span>  <br /> $<span id="fifth_sf2_2"></span> <br /> $<span id="fifth_sf2_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="fifth_country_3"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="fifth_s3_1"></span> <br /> <span id="fifth_s3_2"></span> <br /> <span id="fifth_s3_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="fifth_st3_1"></span>  <br /> <span id="fifth_st3_2"></span>  <br /> <span id="fifth_st3_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="fifth_sf3_1"></span>  <br /> $<span id="fifth_sf3_2"></span> <br /> $<span id="fifth_sf3_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	 </td>
+      
+   </tr>
+   
+   
+   
+   
+   
+   
+   
+     
+   
+   
+   
+   
+   
+   
+   
+   
+    <!--  Sixth Product row  -->
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+      <tr class="r1" id="sixth-prod">
+   <td scope="col"> <img class="product_image" src="" id="sixth_product_image1" /></td>
+      <td scope="col" colspan="2"> 
+
+
+<div class="row">
+  <div class="column"> <b>Variant 6</b>  <br /> <span id="sixth_var_1"></span>  </div>
+ <div class="column"> <b>Current Price 6</b> <br /> $<span id="sixth_curr_prc_1"></span>  </div>
+ <div class="column"> <b>Our Price</b> <br />$<span id="sixth_our_price_1"></span>  <br /> <br /> <b>VAT</b> <br /> $<span id="sixth_vat_1"></span>  </div>
+</div>
+
+<b> Note </b> <br />
+<div class="note"> <span id="sixth_note_1"></span>
+
+<br /><br />
+<b> Product Link  </b> <br />
+<div class="note"> <span id="pl6" class="plink"></span>
+</div>
+
+	   </td>
+	  
+	  
+      <td scope="col" colspan="5"> 
+	  
+	  
+	  
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="sixth_country_1"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="sixth_s1_1"></span> <br /> <span id="sixth_s1_2"></span> <br /> <span id="sixth_s1_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="sixth_st1_1"></span>  <br /> <span id="sixth_st1_2"></span>  <br /> <span id="sixth_st1_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="sixth_sf1_1"></span>  <br /> $<span id="sixth_sf1_2"></span> <br /> $<span id="sixth_sf1_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="second_table">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="sixth_country_2"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="sixth_s2_1"></span> <br /> <span id="sixth_s2_2"></span> <br /> <span id="sixth_s2_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="sixth_st2_1"></span>  <br /> <span id="sixth_st2_2"></span>  <br /> <span id="sixth_st2_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="sixth_sf2_1"></span>  <br /> $<span id="sixth_sf2_2"></span> <br /> $<span id="sixth_sf2_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	  <table class="">
+	  <tr>
+	  <td scope="col"><b>Country</b> <br />  <span id="sixth_country_3"></span> </td>
+	  <td scope="col"><b>Shipping Method</b> <br /> <span id="sixth_s3_1"></span> <br /> <span id="sixth_s3_2"></span> <br /> <span id="sixth_s3_3"></span>  </td>
+	  <td scope="col"> <b>Shipping Time</b> <br /> <span id="sixth_st3_1"></span>  <br /> <span id="sixth_st3_2"></span>  <br /> <span id="sixth_st3_3"></span>   </td>
+	  <td scope="col"> <b>Shipping Fee</b> <br /> $<span id="sixth_sf3_1"></span>  <br /> $<span id="sixth_sf3_2"></span> <br /> $<span id="sixth_sf3_3"></span> </span></td>
+	  </tr>
+	  </table>
+	  
+	 </td>
+      
+   </tr>
+   
+   
+   
+   
+    
+	
+   
+   
+   
+    <tr class="footer_row">
+   
+   <td scope="col" class="" colspan="6"><span class="logo"> <img style="
+    width: 163px;
+" src="ship to the moon_logo.png" /> </span></td>
+   </tr>
+   
+  </tbody>
+</table>
+
+
+
+<button onclick="window.print();" class="no-print">Print this page</button>
+
+
+
+
+
+
+
+
+
+ <script>
+        
+        
+    /*  var jsonn = '{"id":1,"Name":"MathewsArmstrong","Email":"LakShop03@gmail.com","Target_Countries":["UnitedStates","UnitedKingdom"],"Current_Shipping_Time":"7-14days","Product_Image_1":"https://getgrist-images.noschools.life/images/61582a27d094b.png","Product_Image_2":"_grist_Attachments[[8]]","Product_Image_3":[6],"Link_1":"https://www.aliexpress.com/item/1005003023870929.html?spm=a2g0o.search0304.0.0.6d8e2539zmujk2&algo_pvid=cac51801-248b-4936-8b51-8f40ec6d377a&algo_exp_id=cac51801-248b-4936-8b51-8f40ec6d377a-11","Link_2":"https://www.aliexpress.com/item/1005002947987391.html?spm=a2g0o.tm800032002.6792598880.1.576719ea278O8Y&pdp_ext_f=%7B%22ship_from%22:%22CN%22,%22sku_id%22:%2212000022917599170%22%7D&&scm=1007.25281.218752.0&scm_id=1007.25281.218752.0&scm-url=1007.25281.218752.0&pvid=5e01fd0b-04ac-4558-9203-afafc8c28987&utparam=%7B%22process_id%22:%2222%22,%22x_object_type%22:%22product%22,%22pvid%22:%225e01fd0b-04ac-4558-9203-afafc8c28987%22,%22belongs%22:[%7B%22floor_id%22:%2222494022%22,%22id%22:%22824548%22,%22type%22:%22dataset%22%7D,%7B%22id_list%22:[%221000101460%22],%22type%22:%22gbrain%22%7D],%22scm%22:%221007.25281.218752.0%22,%22tpp_buckets%22:%2221669%230%23186385%230_21669%234190%2319166%23894_15281%230%23218752%236%22,%22x_object_id%22:%221005002947987391%22%7D","Link_3":"https://www.aliexpress.com/item/1005001862565993.html?spm=a2g0o.tm800032002.6792598880.58.576719ea278O8Y&pdp_ext_f=%7B%22ship_from%22:%22CN%22,%22sku_id%22:%2212000017901308710%22%7D&&scm=1007.25281.218752.0&scm_id=1007.25281.218752.0&scm-url=1007.25281.218752.0&pvid=5e01fd0b-04ac-4558-9203-afafc8c28987&utparam=%7B%22process_id%22:%2222%22,%22x_object_type%22:%22product%22,%22pvid%22:%225e01fd0b-04ac-4558-9203-afafc8c28987%22,%22belongs%22:[%7B%22floor_id%22:%2222494022%22,%22id%22:%22824548%22,%22type%22:%22dataset%22%7D,%7B%22id_list%22:[%221000101460%22],%22type%22:%22gbrain%22%7D],%22scm%22:%221007.25281.218752.0%22,%22tpp_buckets%22:%2221669%230%23186385%230_21669%234190%2319166%23894_15281%230%23218752%236%22,%22x_object_id%22:%221005001862565993%22%7D","Current_Price_1":5,"Current_Price_2":5.2,"Current_Price_3":1.54,"Variant_1":"Blue","variant_2":"yelloecircle","variant_3":"red","Note_1":"Clientwanttocheckmorestyles","Note_2":"testmore2","Note_3":"testmore3","Monthly_Orders":500,"SDR":"Alice","Date":"2021-09-23T02:20:38.882Z","Quoting_Person":"Ethan","Our_Price":15.5,"VAT":0.7,"Shipping_Fee_1_1":234,"Our_Price2":45,"VAT2":2.9,"Shipping_Fee_2_1":5.2,"Our_Price3":12.2,"VAT3":1.2,"Shipping_Fee3_1":12}';*/
+
+   //document.getElementById('readout').innerHTML = jsonget.id;  
+   
+   
+ 
+   
+        
+        
+        
+        
+    </script>
+    
+    
+    
+
+
+
+
+
+
+  <script>
+      grist.ready();
+      grist.onRecord(function(record) {
+           jsonn = JSON.stringify(record, null, 2);
+       // document.getElementById('readout').innerHTML = jsonn;
+        
+        jsonget = JSON.parse(jsonn);
+
+         document.getElementById('uname').innerHTML = jsonget.Email2;  
+      document.getElementById('orders').innerHTML = jsonget.Monthly_Orders;  
+      document.getElementById('shipping').innerHTML = jsonget.Target_Countries+" "+jsonget.Current_Shipping_Time; 
+document.getElementById('Quoting_Person').innerHTML = jsonget.Quoting_Person;  
+    document.getElementById('sdr').innerHTML = jsonget.SDR;  
+	    document.getElementById('date').innerHTML = jsonget.Date;  
+
+
+
+
+
+//First product
+
+
+
+document.getElementById('country_1').innerHTML = jsonget.Country1_1;
+	document.getElementById('country_2').innerHTML = jsonget.Country1_2;
+	document.getElementById('country_3').innerHTML = jsonget.Country1_3;
+	  
+    document.getElementById('product_image1').src = jsonget.Product_Image_1;    
+    document.getElementById('var_1').innerHTML = jsonget.Variant_1;  
+    document.getElementById('curr_prc_1').innerHTML = jsonget.Current_Price_1;  
+    document.getElementById('our_price_1').innerHTML = jsonget.Our_Price_1;  
+	document.getElementById('vat_1').innerHTML = jsonget.VAT_1;
+	document.getElementById('note_1').innerHTML = jsonget.Note_1;
+	document.getElementById('pl1').innerHTML = "<a href='" + jsonget.Link_1 + "'>" + jsonget.Link_1 + "</a>";
+	
+	
+	document.getElementById('s1_1').innerHTML = jsonget.Shipping_Method1_1;
+	document.getElementById('s1_2').innerHTML = jsonget.Shipping_Method1_2;
+	document.getElementById('s1_3').innerHTML = jsonget.Shipping_Method1_3;
+	document.getElementById('st1_1').innerHTML = jsonget.Shipping_Time1_1;
+	document.getElementById('st1_2').innerHTML = jsonget.Shipping_Time1_2;
+	document.getElementById('st1_3').innerHTML = jsonget.Shipping_Time1_3;
+	document.getElementById('sf1_1').innerHTML = jsonget.Shipping_Fee1_1;
+	document.getElementById('sf1_2').innerHTML = jsonget.Shipping_Fee1_2;
+	document.getElementById('sf1_3').innerHTML = jsonget.Shipping_Fee1_3;
+	
+	document.getElementById('s2_1').innerHTML = jsonget.Shipping_Method2_1_2;
+	document.getElementById('s2_2').innerHTML = jsonget.Shipping_Method2_2_2;
+	document.getElementById('s2_3').innerHTML = jsonget.Shipping_Method2_3_2;
+	document.getElementById('st2_1').innerHTML = jsonget.Shipping_Time2_1;
+	document.getElementById('st2_2').innerHTML = jsonget.Shipping_Time2_2_2;
+	document.getElementById('st2_3').innerHTML = jsonget.Shipping_Time2_3_2;
+	document.getElementById('sf2_1').innerHTML = jsonget.Shipping_Fee2_1_2;
+	document.getElementById('sf2_2').innerHTML = jsonget.Shipping_Fee2_2;
+	document.getElementById('sf2_3').innerHTML = jsonget.Shipping_Fee2_3_2;
+	
+	document.getElementById('s3_1').innerHTML = jsonget.Shipping_Method3_1_2;
+	document.getElementById('s3_2').innerHTML = jsonget.Shipping_Method3_2_2;
+	document.getElementById('s3_3').innerHTML = jsonget.Shipping_Method3_3_2;
+	document.getElementById('st3_1').innerHTML = jsonget.Shipping_Time3_1_2;
+	document.getElementById('st3_2').innerHTML = jsonget.Shipping_Time3_2_2;
+	document.getElementById('st3_3').innerHTML = jsonget.Shipping_Time3_3_2;
+	document.getElementById('sf3_1').innerHTML = jsonget.Shipping_Fee3_1_2;
+	document.getElementById('sf3_2').innerHTML = jsonget.Shipping_Fee3_2_2;
+	document.getElementById('sf3_3').innerHTML = jsonget.Shipping_Fee3_3_2;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//Second product
+
+
+
+document.getElementById('second_country_1').innerHTML = jsonget.Country2_1;
+	document.getElementById('second_country_2').innerHTML = jsonget.Country2_2;
+	document.getElementById('second_country_3').innerHTML = jsonget.Country2_3;
+	  
+    document.getElementById('second_product_image1').src = jsonget.Product_Image_2;    
+    document.getElementById('second_var_1').innerHTML = jsonget.Variant_2;  
+    document.getElementById('second_curr_prc_1').innerHTML = jsonget.Current_Price_1;  
+    document.getElementById('second_our_price_1').innerHTML = jsonget.Our_Price_2;  
+	document.getElementById('second_vat_1').innerHTML = jsonget.VAT_2;
+	document.getElementById('second_note_1').innerHTML = jsonget.Note_2;
+	document.getElementById('pl2').innerHTML = "<a href='" + jsonget.Link_2 + "'>" + jsonget.Link_2 + "</a>";
+	
+	
+	document.getElementById('second_s1_1').innerHTML = jsonget.Shipping_Method2_1_1;
+	document.getElementById('second_s1_2').innerHTML = jsonget.Shipping_Method2_1_2_2;
+	document.getElementById('second_s1_3').innerHTML = jsonget.Shipping_Method2_1_3;
+	document.getElementById('second_st1_1').innerHTML = jsonget.Shipping_Time2_1_1;
+	document.getElementById('second_st1_2').innerHTML = jsonget.Shipping_Time2_1_2;
+	document.getElementById('second_st1_3').innerHTML = jsonget.Shipping_Time2_1_3;
+	document.getElementById('second_sf1_1').innerHTML = jsonget.Shipping_Fee2_1_1;
+	document.getElementById('second_sf1_2').innerHTML = jsonget.Shipping_Fee2_1_2_2;
+	document.getElementById('second_sf1_3').innerHTML = jsonget.Shipping_Fee2_1_3;
+	
+	document.getElementById('second_s2_1').innerHTML = jsonget.Shipping_Method2_2_1;
+	document.getElementById('second_s2_2').innerHTML = jsonget.Shipping_Method2_2_2_2;
+	document.getElementById('second_s2_3').innerHTML = jsonget.Shipping_Method2_2_3;
+	document.getElementById('second_st2_1').innerHTML = jsonget.Shipping_Time2_2_1;
+	document.getElementById('second_st2_2').innerHTML = jsonget.Shipping_Time2_2_2_2;
+	document.getElementById('second_st2_3').innerHTML = jsonget.Shipping_Time2_2_3;
+	document.getElementById('second_sf2_1').innerHTML = jsonget.Shipping_Fee2_2_1;
+	document.getElementById('second_sf2_2').innerHTML = jsonget.Shipping_Fee2_2_2;
+	document.getElementById('second_sf2_3').innerHTML = jsonget.Shipping_Fee2_2_3;
+	
+	document.getElementById('second_s3_1').innerHTML = jsonget.Shipping_Method2_3_1;
+	document.getElementById('second_s3_2').innerHTML = jsonget.Shipping_Method2_3_2_2;
+	document.getElementById('second_s3_3').innerHTML = jsonget.Shipping_Method2_3_3;
+	document.getElementById('second_st3_1').innerHTML = jsonget.Shipping_Time2_3_1;
+	document.getElementById('second_st3_2').innerHTML = jsonget.Shipping_Time2_3_2_2;
+	document.getElementById('second_st3_3').innerHTML = jsonget.Shipping_Time2_3_3;
+	document.getElementById('second_sf3_1').innerHTML = jsonget.Shipping_Fee2_3_1;
+	document.getElementById('second_sf3_2').innerHTML = jsonget.Shipping_Fee2_3_2_2;
+	document.getElementById('second_sf3_3').innerHTML = jsonget.Shipping_Fee2_3_3;
+	
+
+    
+	
+	
+	
+	
+	
+	//Third product
+
+
+
+document.getElementById('third_country_1').innerHTML = jsonget.Country3_1;
+	document.getElementById('third_country_2').innerHTML = jsonget.Country3_2;
+	document.getElementById('third_country_3').innerHTML = jsonget.Country3_3;
+	  
+    document.getElementById('third_product_image1').src = jsonget.Product_Image_3;    
+    document.getElementById('third_var_1').innerHTML = jsonget.Variant_3;  
+    document.getElementById('third_curr_prc_1').innerHTML = jsonget.Current_Price_1;  
+    document.getElementById('third_our_price_1').innerHTML = jsonget.Our_Price_3;  
+	document.getElementById('third_vat_1').innerHTML = jsonget.VAT_3;
+	document.getElementById('third_note_1').innerHTML = jsonget.Note_3;
+	document.getElementById('pl3').innerHTML = "<a href='" + jsonget.Link_3 + "'>" + jsonget.Link_3 + "</a>";
+
+	
+	document.getElementById('third_s1_1').innerHTML = jsonget.Shipping_Method3_1_1;
+	document.getElementById('third_s1_2').innerHTML = jsonget.Shipping_Method3_1_2_2;
+	document.getElementById('third_s1_3').innerHTML = jsonget.Shipping_Method3_1_3;
+	document.getElementById('third_st1_1').innerHTML = jsonget.Shipping_Time3_1_1;
+	document.getElementById('third_st1_2').innerHTML = jsonget.Shipping_Time3_1_2_2;
+	document.getElementById('third_st1_3').innerHTML = jsonget.Shipping_Time3_1_3;
+	document.getElementById('third_sf1_1').innerHTML = jsonget.Shipping_Fee3_1_1;
+	document.getElementById('third_sf1_2').innerHTML = jsonget.Shipping_Fee3_1_2_2;
+	document.getElementById('third_sf1_3').innerHTML = jsonget.Shipping_Fee3_1_3;
+	
+	document.getElementById('third_s2_1').innerHTML = jsonget.Shipping_Method3_2_1;
+	document.getElementById('third_s2_2').innerHTML = jsonget.Shipping_Method3_2_2_2;
+	document.getElementById('third_s2_3').innerHTML = jsonget.Shipping_Method3_2_3;
+	document.getElementById('third_st2_1').innerHTML = jsonget.Shipping_Time3_2_1;
+	document.getElementById('third_st2_2').innerHTML = jsonget.Shipping_Time3_2_2_2;
+	document.getElementById('third_st2_3').innerHTML = jsonget.Shipping_Time3_2_3;
+	document.getElementById('third_sf2_1').innerHTML = jsonget.Shipping_Fee3_2_1;
+	document.getElementById('third_sf2_2').innerHTML = jsonget.Shipping_Fee3_2_2_2;
+	document.getElementById('third_sf2_3').innerHTML = jsonget.Shipping_Fee3_2_3;
+	
+	document.getElementById('third_s3_1').innerHTML = jsonget.Shipping_Method3_3_1;
+	document.getElementById('third_s3_2').innerHTML = jsonget.Shipping_Method3_3_2_2;
+	document.getElementById('third_s3_3').innerHTML = jsonget.Shipping_Method3_3_3;
+	document.getElementById('third_st3_1').innerHTML = jsonget.Shipping_Time3_3_1;
+	document.getElementById('third_st3_2').innerHTML = jsonget.Shipping_Time3_3_2_2;
+	document.getElementById('third_st3_3').innerHTML = jsonget.Shipping_Time3_3_3;
+	document.getElementById('third_sf3_1').innerHTML = jsonget.Shipping_Fee3_3_1;
+	document.getElementById('third_sf3_2').innerHTML = jsonget.Shipping_Fee3_3_2_2;
+	document.getElementById('third_sf3_3').innerHTML = jsonget.Shipping_Fee3_3_3;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Fourth product
+
+
+
+document.getElementById('fourth_country_1').innerHTML = jsonget.Country4_1;
+	document.getElementById('fourth_country_2').innerHTML = jsonget.Country4_2;
+	document.getElementById('fourth_country_3').innerHTML = jsonget.Country4_3;
+	  
+    document.getElementById('fourth_product_image1').src = jsonget.Product_Image4;    
+    document.getElementById('fourth_var_1').innerHTML = jsonget.Variant_4;  
+    document.getElementById('fourth_curr_prc_1').innerHTML = jsonget.Current_Price_4;  
+    document.getElementById('fourth_our_price_1').innerHTML = jsonget.Our_Price_4;  
+	document.getElementById('fourth_vat_1').innerHTML = jsonget.VAT_4;
+	document.getElementById('fourth_note_1').innerHTML = jsonget.Note_4;
+	document.getElementById('pl4').innerHTML = 	"<a href='" + jsonget.Link_4 + "'>" + jsonget.Link_4 + "</a>";
+	
+	
+	document.getElementById('fourth_s1_1').innerHTML = jsonget.Shipping_Method4_1_1;
+	document.getElementById('fourth_s1_2').innerHTML = jsonget.Shipping_Method4_1_2;
+	document.getElementById('fourth_s1_3').innerHTML = jsonget.Shipping_Method4_1_3;
+	document.getElementById('fourth_st1_1').innerHTML = jsonget.Shipping_Time4_1_1;
+	document.getElementById('fourth_st1_2').innerHTML = jsonget.Shipping_Time4_1_2;
+	document.getElementById('fourth_st1_3').innerHTML = jsonget.Shipping_Time4_1_3;
+	document.getElementById('fourth_sf1_1').innerHTML = jsonget.Shipping_Fee4_1_1;
+	document.getElementById('fourth_sf1_2').innerHTML = jsonget.Shipping_Fee4_1_2;
+	document.getElementById('fourth_sf1_3').innerHTML = jsonget.Shipping_Fee4_1_3;
+	
+	document.getElementById('fourth_s2_1').innerHTML = jsonget.Shipping_Method4_2_1;
+	document.getElementById('fourth_s2_2').innerHTML = jsonget.Shipping_Method4_2_2;
+	document.getElementById('fourth_s2_3').innerHTML = jsonget.Shipping_Method4_2_3;
+	document.getElementById('fourth_st2_1').innerHTML = jsonget.Shipping_Time4_2_1;
+	document.getElementById('fourth_st2_2').innerHTML = jsonget.Shipping_Time4_2_2;
+	document.getElementById('fourth_st2_3').innerHTML = jsonget.Shipping_Time4_2_3;
+	document.getElementById('fourth_sf2_1').innerHTML = jsonget.Shipping_Fee4_2_1;
+	document.getElementById('fourth_sf2_2').innerHTML = jsonget.Shipping_Fee4_2_2;
+	document.getElementById('fourth_sf2_3').innerHTML = jsonget.Shipping_Fee4_2_3;
+	
+	document.getElementById('fourth_s3_1').innerHTML = jsonget.Shipping_Method4_3_1;
+	document.getElementById('fourth_s3_2').innerHTML = jsonget.Shipping_Method4_3_2;
+	document.getElementById('fourth_s3_3').innerHTML = jsonget.Shipping_Method4_3_3;
+	document.getElementById('fourth_st3_1').innerHTML = jsonget.Shipping_Time4_3_1;
+	document.getElementById('fourth_st3_2').innerHTML = jsonget.Shipping_Time4_3_2;
+	document.getElementById('fourth_st3_3').innerHTML = jsonget.Shipping_Time4_3_3;
+	document.getElementById('fourth_sf3_1').innerHTML = jsonget.Shipping_Fee4_3_1;
+	document.getElementById('fourth_sf3_2').innerHTML = jsonget.Shipping_Fee4_3_2;
+	document.getElementById('fourth_sf3_3').innerHTML = jsonget.Shipping_Fee4_3_3;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        	//Fifth product
+
+
+
+document.getElementById('fifth_country_1').innerHTML = jsonget.Country5_1;
+	document.getElementById('fifth_country_2').innerHTML = jsonget.Country5_2;
+	document.getElementById('fifth_country_3').innerHTML = jsonget.Country5_3;
+	  
+    document.getElementById('fifth_product_image1').src = jsonget.Product_Image5;    
+    document.getElementById('fifth_var_1').innerHTML = jsonget.Variant_5;  
+    document.getElementById('fifth_curr_prc_1').innerHTML = jsonget.Current_Price_5;  
+    document.getElementById('fifth_our_price_1').innerHTML = jsonget.Our_Price_5;  
+	document.getElementById('fifth_vat_1').innerHTML = jsonget.VAT_5;
+	document.getElementById('fifth_note_1').innerHTML = jsonget.Note_5;
+	document.getElementById('pl5').innerHTML = "<a href='" + jsonget.Link_5 + "'>" + jsonget.Link_5 + "</a>";
+	
+	
+	document.getElementById('fifth_s1_1').innerHTML = jsonget.Shipping_Method5_1_1;
+	document.getElementById('fifth_s1_2').innerHTML = jsonget.Shipping_Method5_1_2;
+	document.getElementById('fifth_s1_3').innerHTML = jsonget.Shipping_Method5_1_3;
+	document.getElementById('fifth_st1_1').innerHTML = jsonget.Shipping_Time5_1_1;
+	document.getElementById('fifth_st1_2').innerHTML = jsonget.Shipping_Time5_1_2;
+	document.getElementById('fifth_st1_3').innerHTML = jsonget.Shipping_Time5_1_3;
+	document.getElementById('fifth_sf1_1').innerHTML = jsonget.Shipping_Fee5_1_1;
+	document.getElementById('fifth_sf1_2').innerHTML = jsonget.Shipping_Fee5_1_2;
+	document.getElementById('fifth_sf1_3').innerHTML = jsonget.Shipping_Fee5_1_3;
+	
+	document.getElementById('fifth_s2_1').innerHTML = jsonget.Shipping_Method5_2_1;
+	document.getElementById('fifth_s2_2').innerHTML = jsonget.Shipping_Method5_2_2;
+	document.getElementById('fifth_s2_3').innerHTML = jsonget.Shipping_Method5_2_3;
+	document.getElementById('fifth_st2_1').innerHTML = jsonget.Shipping_Time5_2_1;
+	document.getElementById('fifth_st2_2').innerHTML = jsonget.Shipping_Time5_2_2;
+	document.getElementById('fifth_st2_3').innerHTML = jsonget.Shipping_Time5_2_3;
+	document.getElementById('fifth_sf2_1').innerHTML = jsonget.Shipping_Fee5_2_1;
+	document.getElementById('fifth_sf2_2').innerHTML = jsonget.Shipping_Fee5_2_2;
+	document.getElementById('fifth_sf2_3').innerHTML = jsonget.Shipping_Fee5_2_3;
+	
+	document.getElementById('fifth_s3_1').innerHTML = jsonget.Shipping_Method5_3_1;
+	document.getElementById('fifth_s3_2').innerHTML = jsonget.Shipping_Method5_3_2;
+	document.getElementById('fifth_s3_3').innerHTML = jsonget.Shipping_Method5_3_3;
+	document.getElementById('fifth_st3_1').innerHTML = jsonget.Shipping_Time5_3_1;
+	document.getElementById('fifth_st3_2').innerHTML = jsonget.Shipping_Time5_3_2;
+	document.getElementById('fifth_st3_3').innerHTML = jsonget.Shipping_Time5_3_3;
+	document.getElementById('fifth_sf3_1').innerHTML = jsonget.Shipping_Fee5_3_1;
+	document.getElementById('fifth_sf3_2').innerHTML = jsonget.Shipping_Fee5_3_2;
+	document.getElementById('fifth_sf3_3').innerHTML = jsonget.Shipping_Fee5_3_3;
+        
+        
+        
+        
+        
+        
+        
+        
+        	//Sixth product
+
+
+
+document.getElementById('sixth_country_1').innerHTML = jsonget.Country6_1;
+	document.getElementById('sixth_country_2').innerHTML = jsonget.Country6_2;
+	document.getElementById('sixth_country_3').innerHTML = jsonget.Country6_3;
+	  
+    document.getElementById('sixth_product_image1').src = jsonget.Product_Image6;    
+    document.getElementById('sixth_var_1').innerHTML = jsonget.Variant_6;  
+    document.getElementById('sixth_curr_prc_1').innerHTML = jsonget.Current_Price6;  
+    document.getElementById('sixth_our_price_1').innerHTML = jsonget.Our_Price_6;  
+	document.getElementById('sixth_vat_1').innerHTML = jsonget.VAT_6;
+	document.getElementById('sixth_note_1').innerHTML = jsonget.Note_6;
+	document.getElementById('pl6').innerHTML = "<a href='" + jsonget.Link_6 + "'>" + jsonget.Link_6 + "</a>";
+	
+	
+	document.getElementById('sixth_s1_1').innerHTML = jsonget.Shipping_Method6_1_1;
+	document.getElementById('sixth_s1_2').innerHTML = jsonget.Shipping_Method6_1_2;
+	document.getElementById('sixth_s1_3').innerHTML = jsonget.Shipping_Method6_1_3;
+	document.getElementById('sixth_st1_1').innerHTML = jsonget.Shipping_Time6_1_1;
+	document.getElementById('sixth_st1_2').innerHTML = jsonget.Shipping_Time6_1_2;
+	document.getElementById('sixth_st1_3').innerHTML = jsonget.Shipping_Time6_1_3;
+	document.getElementById('sixth_sf1_1').innerHTML = jsonget.Shipping_Fee6_1_1;
+	document.getElementById('sixth_sf1_2').innerHTML = jsonget.Shipping_Fee6_1_2;
+	document.getElementById('sixth_sf1_3').innerHTML = jsonget.Shipping_Fee6_1_3;
+	
+	document.getElementById('sixth_s2_1').innerHTML = jsonget.Shipping_Method6_2_1;
+	document.getElementById('sixth_s2_2').innerHTML = jsonget.Shipping_Method6_2_2;
+	document.getElementById('sixth_s2_3').innerHTML = jsonget.Shipping_Method6_2_3;
+	document.getElementById('sixth_st2_1').innerHTML = jsonget.Shipping_Time6_2_1;
+	document.getElementById('sixth_st2_2').innerHTML = jsonget.Shipping_Time6_2_2;
+	document.getElementById('sixth_st2_3').innerHTML = jsonget.Shipping_Time6_2_3;
+	document.getElementById('sixth_sf2_1').innerHTML = jsonget.Shipping_Fee6_2_1;
+	document.getElementById('sixth_sf2_2').innerHTML = jsonget.Shipping_Fee6_2_2;
+	document.getElementById('sixth_sf2_3').innerHTML = jsonget.Shipping_Fee6_2_3;
+	
+	document.getElementById('sixth_s3_1').innerHTML = jsonget.Shipping_Method6_3_1;
+	document.getElementById('sixth_s3_2').innerHTML = jsonget.Shipping_Method6_3_2;
+	document.getElementById('sixth_s3_3').innerHTML = jsonget.Shipping_Method6_3_3;
+	document.getElementById('sixth_st3_1').innerHTML = jsonget.Shipping_Time6_3_1;
+	document.getElementById('sixth_st3_2').innerHTML = jsonget.Shipping_Time6_3_2;
+	document.getElementById('sixth_st3_3').innerHTML = jsonget.Shipping_Time6_3_3;
+	document.getElementById('sixth_sf3_1').innerHTML = jsonget.Shipping_Fee6_3_1;
+	document.getElementById('sixth_sf3_2').innerHTML = jsonget.Shipping_Fee6_3_2;
+	document.getElementById('sixth_sf3_3').innerHTML = jsonget.Shipping_Fee6_3_3;
+        
+        
+        
+        
+        
+        
+if( jsonget.Product_Image_2 != "" )
+{ 
+document.getElementById('first-prod').style.display = "table-row"; 
+document.getElementById('second-prod').style.display = "table-row"; 
+document.getElementById('third-prod').style.display = "none"; 
+document.getElementById('fourth-prod').style.display = "none"; 
+document.getElementById('fifth-prod').style.display = "none"; 
+document.getElementById('sixth-prod').style.display = "none"; 
+
+}
+
+if( jsonget.Product_Image_3 != "" )
+{ 
+document.getElementById('first-prod').style.display = "table-row"; 
+document.getElementById('second-prod').style.display = "table-row"; 
+document.getElementById('third-prod').style.display = "table-row"; 
+document.getElementById('fourth-prod').style.display = "none"; 
+document.getElementById('fifth-prod').style.display = "none"; 
+document.getElementById('sixth-prod').style.display = "none"; 
+}
+
+if( jsonget.Product_Image_4 != "" )
+{ 
+document.getElementById('first-prod').style.display = "table-row"; 
+document.getElementById('second-prod').style.display = "table-row"; 
+document.getElementById('third-prod').style.display = "table-row"; 
+document.getElementById('fourth-prod').style.display = "table-row"; 
+document.getElementById('fifth-prod').style.display = "none"; 
+document.getElementById('sixth-prod').style.display = "none"; 
+}
+
+if( jsonget.Product_Image_5 != "" )
+{ 
+document.getElementById('first-prod').style.display = "table-row"; 
+document.getElementById('second-prod').style.display = "table-row"; 
+document.getElementById('third-prod').style.display = "table-row"; 
+document.getElementById('fourth-prod').style.display = "table-row"; 
+document.getElementById('fifth-prod').style.display = "table-row"; 
+document.getElementById('sixth-prod').style.display = "none"; 
+}
+
+if( jsonget.Product_Image_6 != "" )
+{ 
+document.getElementById('first-prod').style.display = "table-row"; 
+document.getElementById('second-prod').style.display = "table-row"; 
+document.getElementById('third-prod').style.display = "table-row"; 
+document.getElementById('fourth-prod').style.display = "table-row"; 
+document.getElementById('fifth-prod').style.display = "table-row"; 
+document.getElementById('sixth-prod').style.display = "table-row"; 
+}
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+      });
+    </script>
+
+
+</body>
+</html>
